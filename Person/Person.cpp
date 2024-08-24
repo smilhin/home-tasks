@@ -8,11 +8,12 @@ struct Person {
     std::string name, surname, street;
 };
 
-struct Student : Person {
+struct Student : Person 
+{
     
     int studentID;
 
-    Student(const std::string& name, const std::string& surname, const int& studentID, const std::string& street) {
+    Student(const std::string& name, const std::string& surname, const int& studentID, const std::string& street)  {
 
         this->name = name;
         this->surname = surname;
@@ -47,12 +48,11 @@ struct Teacher : Person {
 
 int main()
 {
-    
-    Person* student = new Student("Dan", "Doom", 10, "University Street");
-    std::cout << student->GetPerson() << std::endl;
+    Student student("Dan", "Doom", 10, "University Street");
+    std::cout << student.GetPerson() << std::endl;
 
-    Person* teacher = new Teacher("Nad", "Mood", "Computer Science", "University Street");
-    std::cout << teacher->GetPerson() << std::endl;
+    Teacher teacher("Nad", "Mood", "Computer Science", "University Street");
+    std::cout << teacher.GetPerson() << std::endl;
 
 }
 
