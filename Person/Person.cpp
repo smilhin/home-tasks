@@ -10,7 +10,6 @@ struct Person {
 
 struct Student : Person {
     
-    std::string name, surname, street;
     int studentID;
 
     Student(const std::string& name, const std::string& surname, const int& studentID, const std::string& street) {
@@ -29,7 +28,7 @@ struct Student : Person {
 
 struct Teacher : Person {
 
-    std::string name, surname, street, teachingArea;
+    std::string teachingArea;
 
     Teacher(const std::string& name, const std::string& surname, const std::string& teachingArea, const std::string& street) {
 
