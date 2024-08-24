@@ -13,7 +13,7 @@ struct Student : Person {
     std::string name, surname, street;
     int studentID;
 
-    Student(std::string name, std::string surname, int studentID, std::string street) {
+    Student(const std::string& name, const std::string& surname, const int& studentID, const std::string& street) {
 
         this->name = name;
         this->surname = surname;
@@ -31,7 +31,7 @@ struct Teacher : Person {
 
     std::string name, surname, street, teachingArea;
 
-    Teacher(std::string name, std::string surname, std::string teachingArea, std::string street) {
+    Teacher(const std::string& name, const std::string& surname, const std::string& teachingArea, const std::string& street) {
 
         this->name = name;
         this->surname = surname;
