@@ -24,7 +24,11 @@ struct Student : Person
     Student(const std::string& name, const std::string& surname, const int& studentID, const std::string& street)  
         : Person(name, surname, street), studentID(studentID) 
     {
-    
+        std::cout << "Created Student" << std::endl;
+    }
+
+    ~Student() {
+        std::cout << "Deleted Student!" << std::endl;
     }
     
     std::string GetPerson() {
@@ -40,8 +44,13 @@ struct Teacher : Person
     Teacher(const std::string& name, const std::string& surname, const std::string& teachingArea, const std::string& street) 
         : Person(name, surname, street), teachingArea(teachingArea)
     {
-
+        std::cout << "Created Teacher" << std::endl;
     }
+
+    ~Teacher() {
+        std::cout << "Deleted Teacher!" << std::endl;
+    }
+
 
     std::string GetPerson() override {
         return std::string("Name: ") + this->m_Name + " " + this->m_Surname + ", Teaching Area: " + this->teachingArea + ", Street: " + this->m_Street;
@@ -51,10 +60,12 @@ struct Teacher : Person
 struct Database 
 {
     std::vector<Person*> people;
-    Database() {}
+    Database() {
+        std::cout << "Created Database!" << std::endl;
+    }
 
     ~Database() {
-        people.clear();
+        std::cout << "Destroyed Database!" << std::endl;
     }
 
     void PushToDatabase(Person* person) {
@@ -89,7 +100,9 @@ int main()
     db->PushToDatabase(teacher);
 
     std::cout << db->GetDatabase();
-
-
+    delete student;
+    delete teacher;
+    delete db;
+    std::cin.get();
 }
 
