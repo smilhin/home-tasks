@@ -1,58 +1,60 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
-struct Person {
-
-    virtual std::string GetPerson() = 0;
-
-    std::string name, surname, street;
-};
-
-struct Student : Person 
+struct Person 
 {
+    Person(std::string name, std::string surname, std::string street) 
+        : m_Name(name), m_Surname(surname), m_Street(street)
+    {
     
-    int studentID;
+    }
+    virtual std::string GetPerson() = 0;
+protected:
+    std::string m_Name, m_Surname, m_Street;
+};
 
-    Student(const std::string& name, const std::string& surname, const int& studentID, const std::string& street)  {
+struct Student : Person
+{
 
-        this->name = name;
-        this->surname = surname;
-        this->studentID = studentID;
-        this->street = street;
+    int studentID = 0;
 
+    Student(const std::string& name, const std::string& surname, const int& studentID, const std::string& street)  
+        : Person(name, surname, street), studentID(studentID) 
+    {
+    
     }
     
-    std::string GetPerson() override {
-        return std::string("Name: ") + this->name + " " + this->surname + ", studentID: " + std::to_string(this->studentID) + ", Street: " + this->street;
+    std::string GetPerson() {
+        return std::string("Name: ") + this->m_Name + " " + this->m_Surname + ", studentID: " + std::to_string(this->studentID) + ", Street: " + this->m_Street;
     }
 };
 
-struct Teacher : Person {
+struct Teacher : Person 
+{
 
     std::string teachingArea;
 
-    Teacher(const std::string& name, const std::string& surname, const std::string& teachingArea, const std::string& street) {
-
-        this->name = name;
-        this->surname = surname;
-        this->teachingArea = teachingArea;
-        this->street = street;
+    Teacher(const std::string& name, const std::string& surname, const std::string& teachingArea, const std::string& street) 
+        : Person(name, surname, street), teachingArea(teachingArea)
+    {
 
     }
 
     std::string GetPerson() override {
-        return std::string("Name: ") + this->name + " " + this->surname + ", Teaching Area: " + this->teachingArea + ", Street: " + this->street;
+        return std::string("Name: ") + this->m_Name + " " + this->m_Surname + ", Teaching Area: " + this->teachingArea + ", Street: " + this->m_Street;
     }
 };
 
 
 int main()
 {
+   
     Student student("Dan", "Doom", 10, "University Street");
-    std::cout << student.GetPerson() << std::endl;
 
     Teacher teacher("Nad", "Mood", "Computer Science", "University Street");
-    std::cout << teacher.GetPerson() << std::endl;
+    
+    std::cout << student.GetPerson() << std::endl << teacher.GetPerson();
 
 }
 
