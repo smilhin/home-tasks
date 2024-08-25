@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-
+#include <memory>
 
 
 struct Person 
@@ -89,20 +89,21 @@ struct Database
 int main()
 {
    
-    Student* student = new Student("Dan", "Doom", 10, "University Street");
+    std::unique_ptr<Student> student1 = std::make_unique<Student>("Dan", "Mood", 20, "College Street");
 
-    Teacher* teacher = new Teacher("Nad", "Mood", "Computer Science", "University Street");
+    std::unique_ptr<Teacher> teacher = std::make_unique<Teacher>("Dan", "Mood", "Computer Science", "College Street");
+
+    std::unique_ptr<Student> student2 = std::make_unique<Student>("Dan", "Mood", 20, "College Street");
  
 
     Database* db = new Database();
 
-    db->PushToDatabase(student);
-    db->PushToDatabase(teacher);
+    db->PushToDatabase(student1.get());
+    db->PushToDatabase(teacher.get());
+    db->PushToDatabase(student2.get());
 
     std::cout << db->GetDatabase();
-    delete student;
-    delete teacher;
-    delete db;
+
     std::cin.get();
 }
 
