@@ -24,3 +24,24 @@ std::string GetBin(int x)
     reverse(binary.begin(), binary.end());      //reverse function for binary
     return binary;                              
 }
+
+std::string GetHex(int x) {
+
+    char digits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+    char* ptr = (char*)&x;
+    int var = 0;
+    std::string hex = "";
+
+    for (int i = 0; i < 4; i++) {
+        char temp = *ptr;
+        for (int j = 0; j < 2; j++) {
+            var = (temp >> 4 * j) & 15;
+            hex += digits[var];
+        }
+        ptr++;
+    }
+
+    reverse(hex.begin(), hex.end());
+    return hex;
+
+}

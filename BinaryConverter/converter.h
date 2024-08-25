@@ -6,5 +6,6 @@
 
 std::string GetBin(int x);
 
+std::string GetHex(int x);
 
 #endif
