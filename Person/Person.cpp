@@ -2,6 +2,8 @@
 #include <string>
 #include <vector>
 
+
+
 struct Person 
 {
     Person(const std::string& name, const std::string& surname, const std::string& street)
@@ -46,15 +48,48 @@ struct Teacher : Person
     }
 };
 
+struct Database 
+{
+    std::vector<Person*> people;
+    Database() {}
+
+    ~Database() {
+        people.clear();
+    }
+
+    void PushToDatabase(Person* person) {
+
+        people.push_back(person);
+
+    }
+
+    std::string GetDatabase() {
+
+        std::string result = "";
+
+        for (Person* p : people) {
+            result += p->GetPerson() + "\n";
+        }
+        return result;
+    }
+};
+
 
 int main()
 {
    
-    Student student("Dan", "Doom", 10, "University Street");
+    Student* student = new Student("Dan", "Doom", 10, "University Street");
 
-    Teacher teacher("Nad", "Mood", "Computer Science", "University Street");
-    
-    std::cout << student.GetPerson() << std::endl << teacher.GetPerson();
+    Teacher* teacher = new Teacher("Nad", "Mood", "Computer Science", "University Street");
+ 
+
+    Database* db = new Database();
+
+    db->PushToDatabase(student);
+    db->PushToDatabase(teacher);
+
+    std::cout << db->GetDatabase();
+
 
 }
 
