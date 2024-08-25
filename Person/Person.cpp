@@ -4,7 +4,7 @@
 
 struct Person 
 {
-    Person(std::string name, std::string surname, std::string street) 
+    Person(const std::string& name, const std::string& surname, const std::string& street)
         : m_Name(name), m_Surname(surname), m_Street(street)
     {
     
